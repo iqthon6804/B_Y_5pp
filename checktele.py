@@ -255,6 +255,8 @@ async def _(event):
         await sedthon.send_file(event.chat_id, 'banned.txt')
     else:
         await event.edit("يجب الدفع لاستعمال هذا الامر !")
+
+
 @sedthon.on(events.NewMessage(outgoing=True, pattern=r"\.الانواع"))
 async def _(event):
     if ispay2[0] == "yes":
@@ -275,13 +277,13 @@ async def _(event):
         ch = str(msg[2])
         choice = str(msg[1])
         trys = 0
-        await event.edit(f"Ok I will check  {choice} from the user  {ch} , by number  {msg[0]} of attempts !")
+        await event.edit(f"Ok I will check  `{choice}` from the user  **{ch}** , by number  **{msg[0]}** of attempts !")
 
         @sedthon.on(events.NewMessage(outgoing=True, pattern=r"\.حالة الصيد"))
         async def _(event):
             if ispay2[0] == "yes":
                 if "on" in isclaim:
-                    await event.edit(f"The examination has arrived ({trys}) of attempts")
+                    await event.edit(f"The examination has arrived **({trys})** of attempts")
                 elif "off" in isclaim:
                     await event.edit("There is NO working check !")
                 else:
@@ -343,7 +345,7 @@ async def _(event):
             msg = ("".join(event.text.split(maxsplit=2)[2:])).split(" ", 2)
             username = str(msg[2])
             ch = str(msg[1])
-            await event.edit(f"Well I will try to install  {username} on {ch} , by number  {msg[0]} of attempts !")
+            await event.edit(f"Well I will try to install  **{username}** on **{ch}** , by number  **{msg[0]}** of attempts !")
 
             @sedthon.on(events.NewMessage(outgoing=True, pattern=r"\.condition Attract"))
             async def _(event):
@@ -355,7 +357,7 @@ async def _(event):
                     await event.edit("mistake")
             for i in range(int(msg[0])):
                 if ispay2[0] == 'no':
-break
+                    break
                 t = Thread(target=lambda q, arg1: q.put(
                     check_user(arg1)), args=(que, username))
                 t.start()
@@ -371,7 +373,7 @@ break
     ''')
                         break
                     except telethon.errors.rpcerrorlist.UsernameInvalidError:
-                        await event.client.send_message(event.chat_id, f"مبند {username} ❌❌")
+                        await event.client.send_message(event.chat_id, f"مبند `{username}` ❌❌")
                         break
                     except Exception as eee:
 
@@ -390,7 +392,7 @@ break
             isclaim.append("off")
             await sedthon.send_message(event.chat_id, "تم الانتهاء من التثبيت التلقائي")
         if msg[0] == "يدوي":  # تثبيت يدوي يوزر قناة
-            await event.edit(f"حسناً سأحاول تثبيت {username} على {ch} !")
+            await event.edit(f"حسناً سأحاول تثبيت `{username}` على `{ch}` !")
             msg = ("".join(event.text.split(maxsplit=1)[1:])).split(" ", 1)
             username = str(msg[0])
             ch = str(msg[1])
@@ -402,7 +404,7 @@ break
 ✪ By @BHthon - @myAbnBashar
     ''')
             except telethon.errors.rpcerrorlist.UsernameInvalidError:
-                await event.client.send_message(event.chat_id, f"مبند {username} ❌❌")
+                await event.client.send_message(event.chat_id, f"مبند `{username}` ❌❌")
             except Exception as eee:
                 await sedthon.send_message(event.chat_id, f'''خطأ مع {username}
     الخطأ :
